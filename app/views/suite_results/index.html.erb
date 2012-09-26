@@ -1,0 +1,27 @@
+<h1>Listing suite_results</h1>
+
+<table>
+  <tr>
+    <th>Test suite</th>
+    <th>Run</th>
+    <th>Status</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @suite_results.each do |suite_result| %>
+  <tr>
+    <td><%= suite_result.test_suite_id %></td>
+    <td><%= suite_result.run_id %></td>
+    <td><%= suite_result.status %></td>
+    <td><%= link_to 'Show', suite_result %></td>
+    <td><%= link_to 'Edit', edit_suite_result_path(suite_result) %></td>
+    <td><%= link_to 'Destroy', suite_result, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Suite result', new_suite_result_path %>

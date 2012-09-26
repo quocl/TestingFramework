@@ -1,4 +1,6 @@
 TestingFramework::Application.routes.draw do
+  resources :suite_results
+
   resources :runs
 
   resources :test_suites

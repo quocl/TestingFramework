@@ -1,29 +1,26 @@
-<%= form_for(@suite_result) do |f| %>
-  <% if @suite_result.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@suite_result.errors.count, "error") %> prohibited this suite_result from being saved:</h2>
-
-      <ul>
-      <% @suite_result.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for @suite_result, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :test_suite_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :test_suite_id, :class => 'number_field' %>
     </div>
-  <% end %>
+  </div>
+  <div class="control-group">
+    <%= f.label :run_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :run_id, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :status, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :status, :class => 'number_field' %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :test_suite_id %><br />
-    <%= f.number_field :test_suite_id %>
-  </div>
-  <div class="field">
-    <%= f.label :run_id %><br />
-    <%= f.number_field :run_id %>
-  </div>
-  <div class="field">
-    <%= f.label :status %><br />
-    <%= f.number_field :status %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                suite_results_path, :class => 'btn' %>
   </div>
 <% end %>

@@ -1,27 +1,40 @@
-<h1>Listing suite_results</h1>
-
-<table>
-  <tr>
-    <th>Test suite</th>
-    <th>Run</th>
-    <th>Status</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @suite_results.each do |suite_result| %>
-  <tr>
-    <td><%= suite_result.test_suite_id %></td>
-    <td><%= suite_result.run_id %></td>
-    <td><%= suite_result.status %></td>
-    <td><%= link_to 'Show', suite_result %></td>
-    <td><%= link_to 'Edit', edit_suite_result_path(suite_result) %></td>
-    <td><%= link_to 'Destroy', suite_result, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<%- model_class = SuiteResult -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:test_suite_id) %></th>
+      <th><%= model_class.human_attribute_name(:run_id) %></th>
+      <th><%= model_class.human_attribute_name(:status) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @suite_results.each do |suite_result| %>
+      <tr>
+        <td><%= link_to suite_result.id, suite_result_path(suite_result) %></td>
+        <td><%= suite_result.test_suite_id %></td>
+        <td><%= suite_result.run_id %></td>
+        <td><%= suite_result.status %></td>
+        <td><%=l suite_result.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_suite_result_path(suite_result), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      suite_result_path(suite_result),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Suite result', new_suite_result_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_suite_result_path,
+            :class => 'btn btn-primary' %>

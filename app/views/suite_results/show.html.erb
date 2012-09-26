@@ -1,20 +1,25 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = SuiteResult -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
 
-<p>
-  <b>Test suite:</b>
-  <%= @suite_result.test_suite_id %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:test_suite_id) %>:</strong></dt>
+  <dd><%= @suite_result.test_suite_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:run_id) %>:</strong></dt>
+  <dd><%= @suite_result.run_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
+  <dd><%= @suite_result.status %></dd>
+</dl>
 
-<p>
-  <b>Run:</b>
-  <%= @suite_result.run_id %>
-</p>
-
-<p>
-  <b>Status:</b>
-  <%= @suite_result.status %>
-</p>
-
-
-<%= link_to 'Edit', edit_suite_result_path(@suite_result) %> |
-<%= link_to 'Back', suite_results_path %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              suite_results_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_suite_result_path(@suite_result), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              suite_result_path(@suite_result),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

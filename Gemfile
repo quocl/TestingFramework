@@ -32,6 +32,9 @@ group :test do
   gem 'factory_girl_rails'
   gem 'database_cleaner'
 end
+
+gem 'resque'
+gem 'pry-rails'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

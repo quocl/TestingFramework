@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe TestSuiteController do
+describe TestSuitesController do
   let!(:test_suite){FactoryGirl.create(:test_suite)}
   describe 'GET index' do
     before(:each) do
@@ -26,6 +26,13 @@ describe TestSuiteController do
     
     it "should assign post to post" do
       assigns[:test_suite].should eq(test_suite)
+    end
+  end
+  
+  describe "GET new" do
+    it "should not save the test suite" do
+      expect{get :new}.to change{TestSuite.count}.by(0)
+      assigns[:test_suite].should_not be_persisted
     end
   end
 end
